@@ -1,16 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
 
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.atmofly_lab1.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.atmofly_lab1.FlyAppController">
+    <children>
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="719.0" prefWidth="654.0" VBox.vgrow="ALWAYS">
+            <children>
+                <ButtonBar layoutX="480.0" layoutY="69.0" prefHeight="56.0" prefWidth="60.0"/>
+                <Button fx:id="launchButton" layoutX="473.0" layoutY="27.0" mnemonicParsing="false" prefHeight="42.0"
+                        prefWidth="100.0" text="Launch" onAction="#onLaunchButtonClick">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </Button>
+                <Label layoutX="36.0" layoutY="27.0" prefHeight="27.0" prefWidth="60.0" text="Height:">
+                    <font>
+                        <Font size="15.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="36.0" layoutY="64.0" prefHeight="27.0" prefWidth="60.0" text="Angle:">
+                    <font>
+                        <Font size="15.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="36.0" layoutY="104.0" prefHeight="27.0" prefWidth="60.0" text="Speed:">
+                    <font>
+                        <Font size="15.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="232.0" layoutY="69.0" prefHeight="27.0" prefWidth="60.0" text="Weight:">
+                    <font>
+                        <Font size="15.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="232.0" layoutY="27.0" prefHeight="27.0" prefWidth="60.0" text="Size:">
+                    <font>
+                        <Font size="15.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="232.0" layoutY="104.0" prefHeight="27.0" prefWidth="60.0" text="Dt (s):">
+                    <font>
+                        <Font size="15.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="405.0" layoutY="104.0" prefHeight="27.0" prefWidth="60.0" text="tick (ms):">
+                    <font>
+                        <Font size="15.0"/>
+                    </font>
+                </Label>
+                <LineChart fx:id="mainLineChart" animated="true"  layoutY="153.0" prefHeight="400.0" prefWidth="640.0">
+                    <xAxis>
+                        <NumberAxis prefHeight="23.0" prefWidth="582.0" side="BOTTOM" lowerBound="0" upperBound="30"/>
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis side="LEFT" lowerBound="0" upperBound="10"/>
+                    </yAxis>
+                </LineChart>
+                <TextField fx:id="heightTextField" text="0" layoutX="96.0" layoutY="28.0" prefHeight="27.0" prefWidth="107.0"/>
+                <TextField fx:id="angleTextField" text="45" layoutX="96.0" layoutY="69.0" prefHeight="27.0" prefWidth="107.0"/>
+                <TextField fx:id="speedTextField" text="10" layoutX="96.0" layoutY="112.0" prefHeight="27.0" prefWidth="107.0"/>
+                <TextField fx:id="sizeTextField" text="0.10" layoutX="292.0" layoutY="27.0" prefHeight="27.0" prefWidth="107.0"/>
+                <TextField fx:id="weightTextField" text="1" layoutX="292.0" layoutY="69.0" prefHeight="27.0" prefWidth="107.0"/>
+                <TextField fx:id="dtTextField" text="0.05" layoutX="292.0" layoutY="112.0" prefHeight="27.0" prefWidth="107.0"/>
+                <TextField fx:id="timerTickTextField" text="25" layoutX="470.0" layoutY="112.0" prefHeight="27.0" prefWidth="80.0"/>
+                <TableView fx:id="resultsTable" layoutX="36.0" layoutY="539.0" prefHeight="200.0" prefWidth="584.0">
+                </TableView>
+            </children>
+        </AnchorPane>
+    </children>
 </VBox>
